@@ -1,4 +1,5 @@
 const USER_GRID_PROMPT = "How many squares per side do you want? (Limit: 100)";
+const RETRY_GRID_PROMPT = "Invalid input, please try another number(1-100) or press cancel.";
 const defaultSquaresPerSide = 16;
 
 function generateGrid(numOfSquaresPerSide){
@@ -35,7 +36,20 @@ function paintSquare(event) {
 
 function propmtUserForGrid() {
     let userInput = prompt(USER_GRID_PROMPT, "64");
-    let numOfSquaresPerSide = Number(userInput);
+    let isValidInput = false;
+    let numOfSquaresPerSide;
+
+    do {
+        numOfSquaresPerSide = Number(userInput);
+        if(userInput === null)
+            return;
+        else if(numOfSquaresPerSide === NaN || numOfSquaresPerSide > 100
+                   || numOfSquaresPerSide < 1)
+            userInput = prompt(RETRY_GRID_PROMPT, "64");
+        else
+            isValidInput = true;
+    }while(!isValidInput);
+
     deleteGrid();
     generateGrid(numOfSquaresPerSide);
 }
