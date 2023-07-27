@@ -8,12 +8,12 @@ function generateGrid(numOfSquaresPerSide){
     for(let i = 1; i <= numOfSquaresPerSide; i++){
         const row = document.createElement("div");
         row.classList.add("row-container");
+
         for(let j = 1; j <= numOfSquaresPerSide; j++){
-            const square = document.createElement("div");
-            square.classList.add("square");
-            square.addEventListener("mouseover", paintSquare);
+            const square = initializeSquare();
             row.appendChild(square);
         }
+
         sketchGrid.appendChild(row);
     }
 }
@@ -24,6 +24,13 @@ function deleteGrid() {
 
     for(let i = 1; i <= numOfSquaresPerSide; i++)
         sketchGrid.removeChild(sketchGrid.firstChild);
+}
+
+function initializeSquare() {
+    const newSquare = document.createElement("div");
+    newSquare.classList.add("square");
+    newSquare.addEventListener("mouseover", paintSquare);
+    return newSquare;
 }
 
 function paintSquare(event) {
