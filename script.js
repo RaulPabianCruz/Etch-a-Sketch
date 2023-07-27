@@ -1,3 +1,4 @@
+const USER_GRID_PROMPT = "How many squares per side do you want? (Limit: 100)";
 let numOfSquaresPerSide = 16;
 
 function generateGrid(numOfSquares){
@@ -17,9 +18,21 @@ function generateGrid(numOfSquares){
 }
 
 function paintSquare(event) {
-    console.log(event.target);
     const square = event.target;
-    square.classList.add("hovered-over");
+    const isPainted = square.classList.contains("hovered-over");
+    if(!isPainted){
+        square.classList.add("hovered-over");
+    }
 }
+
+function propmtUserForGrid() {
+    let userInput = prompt(USER_GRID_PROMPT, "64");
+    let numOfSquares = Number(userInput);
+    deleteGrid();
+    generateGrid(numOfSquares);
+}
+
+const generateButton = document.querySelector(".generateBtn");
+generateButton.addEventListener("click", propmtUserForGrid);
 
 generateGrid(numOfSquaresPerSide);
