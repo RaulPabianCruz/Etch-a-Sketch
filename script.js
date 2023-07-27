@@ -6,8 +6,7 @@ function generateGrid(numOfSquaresPerSide){
     const sketchGrid = document.querySelector(".container");
 
     for(let i = 1; i <= numOfSquaresPerSide; i++){
-        const row = document.createElement("div");
-        row.classList.add("row-container");
+        const row = initializeRow();
 
         for(let j = 1; j <= numOfSquaresPerSide; j++){
             const square = initializeSquare();
@@ -24,6 +23,12 @@ function deleteGrid() {
 
     for(let i = 1; i <= numOfSquaresPerSide; i++)
         sketchGrid.removeChild(sketchGrid.firstChild);
+}
+
+function initializeRow() {
+    const newRow = document.createElement("div");
+    newRow.classList.add("row-container");
+    return newRow;
 }
 
 function initializeSquare() {
