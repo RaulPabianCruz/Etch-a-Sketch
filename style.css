@@ -1,3 +1,9 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 .container {
     width: 960px;
     height: 90vh;
@@ -14,10 +20,11 @@
 }
 
 .square {
+    background-color: lightgrey;
     border: 1px solid black;
     flex: 1 1 0;
 }
 
 .hovered-over {
-    background-color: gray;
+    background-color: black;
 }
