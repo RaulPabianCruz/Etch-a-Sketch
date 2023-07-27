@@ -9,12 +9,17 @@ function generateGrid(numOfSquares){
         for(let j = 1; j <= numOfSquares; j++){
             const square = document.createElement("div");
             square.classList.add("square");
+            square.addEventListener("mouseover", paintSquare);
             row.appendChild(square);
         }
         sketchGrid.appendChild(row);
-        console.log(row.children.length);
     }
-    console.log(sketchGrid.children.length);
+}
+
+function paintSquare(event) {
+    console.log(event.target);
+    const square = event.target;
+    square.classList.add("hovered-over");
 }
 
 generateGrid(numOfSquaresPerSide);
