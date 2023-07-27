@@ -1,13 +1,13 @@
 const USER_GRID_PROMPT = "How many squares per side do you want? (Limit: 100)";
-let numOfSquaresPerSide = 16;
+const defaultSquaresPerSide = 16;
 
-function generateGrid(numOfSquares){
+function generateGrid(numOfSquaresPerSide){
     const sketchGrid = document.querySelector(".container");
 
-    for(let i = 1; i <= numOfSquares; i++){
+    for(let i = 1; i <= numOfSquaresPerSide; i++){
         const row = document.createElement("div");
         row.classList.add("row-container");
-        for(let j = 1; j <= numOfSquares; j++){
+        for(let j = 1; j <= numOfSquaresPerSide; j++){
             const square = document.createElement("div");
             square.classList.add("square");
             square.addEventListener("mouseover", paintSquare);
@@ -15,6 +15,14 @@ function generateGrid(numOfSquares){
         }
         sketchGrid.appendChild(row);
     }
+}
+
+function deleteGrid() {
+    const sketchGrid = document.querySelector(".container");
+    const numOfSquaresPerSide = sketchGrid.children.length;
+
+    for(let i = 1; i <= numOfSquaresPerSide; i++)
+        sketchGrid.removeChild(sketchGrid.firstChild);
 }
 
 function paintSquare(event) {
@@ -27,12 +35,12 @@ function paintSquare(event) {
 
 function propmtUserForGrid() {
     let userInput = prompt(USER_GRID_PROMPT, "64");
-    let numOfSquares = Number(userInput);
+    let numOfSquaresPerSide = Number(userInput);
     deleteGrid();
-    generateGrid(numOfSquares);
+    generateGrid(numOfSquaresPerSide);
 }
 
 const generateButton = document.querySelector(".generateBtn");
 generateButton.addEventListener("click", propmtUserForGrid);
 
-generateGrid(numOfSquaresPerSide);
+generateGrid(defaultSquaresPerSide);
